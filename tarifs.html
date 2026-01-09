@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarifs - LTD Little Seoul</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* HEADER */
+        .ltd-header {
+            background: linear-gradient(90deg, #c60000, #4a0063);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* MENU NAVIGATION HORIZONTAL */
+        nav {
+            background-color: #004aad;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;         /* supprime les puces */
+            display: flex;             /* éléments horizontaux */
+            justify-content: center;   /* centre le menu */
+            gap: 40px;                 /* espace entre les liens */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* SECTION TARIFS */
+        .tarifs-section {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .tarif-categorie {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .tarif-categorie h2 {
+            text-align: center;
+            color: #c60000;
+            margin-bottom: 15px;
+        }
+
+        .tarif-categorie ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tarif-categorie li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        /* LIEN RETOUR */
+        .retour {
+            text-align: center;
+            margin: 30px;
+        }
+
+        .retour a {
+            color: #004aad;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .retour a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004aad;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ltd-header">
+    <h1>LTD Little Seoul</h1>
+    <p>Grille tarifaire officielle</p>
+</header>
+
+<!-- MENU -->
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+       
+    </ul>
+</nav>
+
+<!-- SECTION TARIFS -->
+<section class="tarifs-section">
+
+    <div class="tarif-categorie">
+        <h2>🍞 Nourriture</h2>
+        <ul>
+            <li><span>Pain</span><span>8 $</span></li>
+            <li><span>Cheeseburger</span><span>17 $</span></li>
+        </ul>
+    </div>
+
+    <div class="tarif-categorie">
+        <h2>🥤 Boissons</h2>
+        <ul>
+            <li><span>Eau</span><span>6 $</span></li>
+            <li><span>Canette Cola</span><span>10 $</span></li>
+            <li><span>Canette Sprunk</span><span>10 $</span></li>
+            <li><span>Soda 50cl</span><span>14 $</span></li>
+            <li><span>Boisson énergisante</span><span>14 $</span></li>
+        </ul>
+    </div>
+
+    <div class="tarif-categorie">
+        <h2>🍫 Encas</h2>
+        <ul>
+            <li><span>Barre chocolatée</span><span>12 $</span></li>
+            <li><span>Barre énergétique</span><span>12 $</span></li>
+        </ul>
+    </div>
+
+    <div class="tarif-categorie">
+        <h2>🧰 Divers</h2>
+        <ul>
+            <li><span>Gel de cheveux</span><span>60 $</span></li>
+            <li><span>Parapluie</span><span>225 $</span></li>
+            <li><span>Malette</span><span>225 $</span></li>
+            <li><span>Téléphone</span><span>2 800 $</span></li>
+            <li><span>Jerrycan</span><span>800 $</span></li>
+        </ul>
+    </div>
+
+</section>
+
+<!-- LIEN RETOUR -->
+<p class="retour">
+    <a href="index.html">⬅ Retour à l'accueil</a>
+</p>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 - LTD Little Seoul | Site RP
+</footer>
+
+</body>
+</html>
+
+
