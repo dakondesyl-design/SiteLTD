@@ -49,13 +49,3 @@
     margin: 30px;
 }
 
-.retour a {
-    color: #004aad;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.retour a:hover {
-    text-decoration: underline;
-}
-
