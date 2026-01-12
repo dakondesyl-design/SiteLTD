@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - LTD Little Seoul</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* HEADER */
+        .ltd-header {
+            background: linear-gradient(90deg, #c60000, #004aad);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* MENU */
+        nav {
+            background-color: #004aad;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* SECTION ACTUALITÉS */
+        .actus-section {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .actu-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        }
+
+        .actu-card h2 {
+            color: #c60000;
+            margin-bottom: 10px;
+        }
+
+        .actu-date {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .actu-card p {
+            line-height: 1.5;
+        }
+
+        .actu-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #004aad;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .actu-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004aad;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ltd-header">
+    <h1>LTD Little Seoul</h1>
+    <p>Actualités & articles officiels</p>
+</header>
+
+<!-- MENU -->
+<nav>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="tarifs.html">Tarifs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+	<li><a href="actualites.html">Actualités</a></li>
+	<li><a href="Partenairiat.html">Partenariat</a></li>
+    </ul>
+</nav>
+
+<!-- ACTUALITÉS -->
+<section class="actus-section">
+
+    <article class="actu-card">
+        <h2>🎉 Ouverture officielle de LTD</h2>
+        <div class="actu-date">📅 10 janvier 2026</div>
+        <p>
+            LTD Little Seoul ouvre officiellement ses portes à Los Santos.
+            Venez découvrir nos services et notre équipe.
+        </p>
+        <a href="article-1.html">Lire l’article →</a>
+    </article>
+
+    <article class="actu-card">
+        <h2>🔥 Promotion exceptionnelle</h2>
+        <div class="actu-date">📅 15 janvier 2026</div>
+        <p>
+            Une promotion limitée est disponible sur plusieurs produits.
+            Offre valable pendant 24h.
+        </p>
+        <a href="article-2.html">Lire l’article →</a>
+    </article>
+
+    <article class="actu-card">
+        <h2>⚠️ Information importante</h2>
+        <div class="actu-date">📅 20 janvier 2026</div>
+        <p>
+            Un tirage au sort sera organisé prochainement pour récompenser
+            nos clients fidèles.
+        </p>
+        <a href="article-3.html">Lire l’article →</a>
+    </article>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 - LTD Little Seoul | Site Stalya RP
+</footer>
+
+</body>
+</html>
