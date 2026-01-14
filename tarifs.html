@@ -1,193 +1,127 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Tarifs - LTD Little Seoul</title>
+    <title>Tarifs - LTD Little Seoul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* HEADER */
-        .ltd-header {
-            background: linear-gradient(90deg, #c60000, #4a0063);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
+    <script src="webhooks.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
 
-        /* MENU NAVIGATION HORIZONTAL */
-        nav {
-            background-color: #004aad;
-            padding: 15px 0;
-        }
-
-        nav ul {
-            list-style: none;         /* supprime les puces */
-            display: flex;             /* éléments horizontaux */
-            justify-content: center;   /* centre le menu */
-            gap: 40px;                 /* espace entre les liens */
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        /* SECTION TARIFS */
-        .tarifs-section {
-            max-width: 900px;
-            margin: 40px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .tarif-categorie {
-            background-color: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
-
-        .tarif-categorie h2 {
-            text-align: center;
-            color: #c60000;
-            margin-bottom: 15px;
-        }
-
-        .tarif-categorie ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .tarif-categorie li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
-            font-weight: bold;
-        }
-
-        /* LIEN RETOUR */
-        .retour {
-            text-align: center;
-            margin: 30px;
-        }
-
-        .retour a {
-            color: #004aad;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .retour a:hover {
-            text-decoration: underline;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #004aad;
-            color: white;
-            margin-top: 50px;
-        }
-    </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header class="ltd-header">
-    <h1>LTD Little Seoul</h1>
-    <p>Grille tarifaire officielle</p>
-</header>
+    <header class="ltd-header">
+        <h1>LTD Little Seoul</h1>
+        <p>Grille tarifaire officielle</p>
+    </header>
 
-<!-- MENU -->
-<nav>
-    <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="actualites.html">Actualité</a></li>
-	<li><a href="partenairiat.html">Partenariat</a></li>
-    </ul>
-</nav>
-
-<!-- SECTION TARIFS -->
-<section class="tarifs-section">
-
-    <div class="tarif-categorie">
-        <h2>🍞 Nourriture</h2>
+    <nav>
         <ul>
-            <li><span>Pain🍞</span><span>8 $</span></li>
-            <li><span>Cheeseburger🍔</span><span>17 $</span></li>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="suivi-commande.html">Suivi Commande</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="actualites.html">Actualité</a></li>
         </ul>
+    </nav>
+
+    <section class="tarifs-section">
+
+        <div class="tarif-categorie">
+            <h2>🍞 Nourriture</h2>
+            <ul>
+                <li data-id="pain"><span>Pain🍞</span><span>8 $</span></li>
+                <li data-id="burger"><span>Cheeseburger🍔</span><span>17 $</span></li>
+            </ul>
+        </div>
+
+        <div class="tarif-categorie">
+            <h2>🥤 Boissons</h2>
+            <ul>
+                <li data-id="eau"><span>Eau🫙</span><span>6 $</span></li>
+                <li data-id="cola"><span>Canette Cola🍾</span><span>10 $</span></li>
+                <li data-id="sprunk"><span>Canette Sprunk🍾</span><span>10 $</span></li>
+                <li data-id="soda"><span>Soda 50cl🍾</span><span>14 $</span></li>
+                <li data-id="energy"><span>Boisson énergisante🍾</span><span>14 $</span></li>
+            </ul>
+        </div>
+
+        <div class="tarif-categorie">
+            <h2>🍫 Encas</h2>
+            <ul>
+                <li data-id="chocobar"><span>Barre chocolatée🍫</span><span>12 $</span></li>
+                <li data-id="energybar"><span>Barre énergétique🍫</span><span>12 $</span></li>
+            </ul>
+        </div>
+
+        <div class="tarif-categorie">
+            <h2>🧰 Divers</h2>
+            <ul>
+                <li data-id="gel"><span>Gel de cheveux</span><span>60 $</span></li>
+                <li data-id="parapluie"><span>Parapluie☂️</span><span>225 $</span></li>
+                <li data-id="malette"><span>Malette💼</span><span>225 $</span></li>
+                <li data-id="tel"><span>Téléphone📱</span><span>2 800 $</span></li>
+                <li data-id="jerrycan"><span>Jerrycan⛽</span><span>800 $</span></li>
+            </ul>
+        </div>
+
+        <div class="tarif-categorie">
+            <h2>🚬 Subtance</h2>
+            <ul>
+                <li data-id="cigarette"><span>Cigarette 🚬</span><span>250 $</span></li>
+                <li data-id="cigare"><span>Cigare classique 🚬</span><span>7 500 $</span></li>
+                <li data-id="cigare_luxe"><span>Cigare de Luxe 🚬</span><span>15 000 $</span></li>
+                <li data-id="cigare_cubain"><span>Cigare Cubain🚬</span><span>25 000 $</span></li>
+            </ul>
+        </div>
+
+    </section>
+
+    <p class="retour">
+        <a href="index.html">⬅ Retour à l'accueil</a>
+    </p>
+
+    <div id="checkout-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="color: var(--primary);">Finaliser la commande</h2>
+            <p>Total à payer : <strong id="modal-total-price">0 $</strong></p>
+
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Nom :</label>
+                    <input type="text" id="order-nom" required>
+                </div>
+                <div class="form-group">
+                    <label>Prénom :</label>
+                    <input type="text" id="order-prenom" required>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de téléphone :</label>
+                    <input type="tel" id="order-tel" required pattern="[0-9-\s]+" placeholder="555-0000">
+                </div>
+                <div class="form-group">
+                    <label>ID (Identité) :</label>
+                    <input type="text" id="order-id" required>
+                </div>
+                <button type="submit" class="btn" style="width:100%; margin-top:15px;">Confirmer la commande ✅</button>
+            </form>
+        </div>
     </div>
 
-    <div class="tarif-categorie">
-        <h2>🥤 Boissons</h2>
-        <ul>
-            <li><span>Eau🫙</span><span>6 $</span></li>
-            <li><span>Canette Cola🍾</span><span>10 $</span></li>
-            <li><span>Canette Sprunk🍾</span><span>10 $</span></li>
-            <li><span>Soda 50cl🍾</span><span>14 $</span></li>
-            <li><span>Boisson énergisante🍾</span><span>14 $</span></li>
-        </ul>
-    </div>
-
-    <div class="tarif-categorie">
-        <h2>🍫 Encas</h2>
-        <ul>
-            <li><span>Barre chocolatée🍫</span><span>12 $</span></li>
-            <li><span>Barre énergétique🍫</span><span>12 $</span></li>
-        </ul>
-    </div>
-
-    <div class="tarif-categorie">
-        <h2>🧰 Divers</h2>
-        <ul>
-            <li><span>Gel de cheveux💈</span><span>60 $</span></li>
-            <li><span>Parapluie☂️</span><span>225 $</span></li>
-            <li><span>Malette💼</span><span>225 $</span></li>
-            <li><span>Téléphone📱</span><span>2 800 $</span></li>
-            <li><span>Jerrycan⛽</span><span>800 $</span></li>
-        </ul>
-    </div>
-
-    <div class="tarif-categorie">
-        <h2>🚬 Subtance</h2>
-        <ul>
-            <li><span>Cigarette 🚬</span><span>250 $</span></li>
-            <li><span>Cigare classique 🚬</span><span>7 500 $</span></li>
-            <li><span>Cigare de Luxe 🚬</span><span>15 000 $</span></li>
-            <li><span>Cigare Cubain🚬</span><span>25 000 $</span></li>
-        </ul>
-    </div>
-
-</section>
-
-<!-- LIEN RETOUR -->
-<p class="retour">
-    <a href="index.html">⬅ Retour à l'accueil</a>
-</p>
-
-<!-- FOOTER -->
-<footer>
-    © 2026 - LTD Little Seoul | Site Stalya RP
-</footer>
+    <footer>
+        © 2026 - LTD Little Seoul | Site Stalya RP
+    </footer>
 
 </body>
+
 </html>
-
-
-

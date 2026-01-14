@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de Commande - LTD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="webhooks.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="ltd-header">
+        <h1>Suivi de Commande</h1>
+        <p>Vérifiez l'état de votre commande en temps réel</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="suivi-commande.html">Suivi Commande</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="actualites.html">Actualité</a></li>
+        </ul>
+    </nav>
+
+    <div class="suivi-container">
+        <div class="suivi-form">
+            <h2>🔎 Rechercher une commande</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">Entrez votre numéro de commande (ex: ORD-123456)</p>
+
+            <div class="search-group">
+                <input type="text" id="order-search-input" placeholder="ORD-XXXXXX">
+                <button class="btn square-btn" id="search-btn">Rechercher</button>
+            </div>
+
+            <div id="search-result" style="display: none;" class="suivi-result">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 - LTD Little Seoul | Site Stalya RP
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('search-btn');
+            const input = document.getElementById('order-search-input');
+            const resultDiv = document.getElementById('search-result');
+
+            btn.addEventListener('click', () => {
+                const searchId = input.value.trim();
+                if (!searchId) return;
+
+                const orders = JSON.parse(localStorage.getItem('ltd_orders') || '[]');
+                const order = orders.find(o => o.id === searchId);
+
+                resultDiv.style.display = 'block';
+
+                if (order) {
+                    let statusClass = 'pending';
+                    let statusText = 'En attente ⏳';
+                    let statusDesc = 'Votre commande est en attente de prise en charge par un employé.';
+
+                    if (order.takenBy) {
+                        statusClass = 'ready';
+                        statusText = 'Prise en charge ✅';
+                        statusDesc = `Votre commande est en cours de préparation par <strong>${order.takenBy}</strong>.`;
+                    }
+
+                    const itemsHtml = order.items.map(i => `<li>${i.qty}x ${i.name}</li>`).join('');
+
+                    resultDiv.innerHTML = `
+                        <h3 style="color: var(--primary);">Commande #${order.id}</h3>
+                        <div class="suivi-status ${statusClass}">${statusText}</div>
+                        <p>${statusDesc}</p>
+                        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+                        <div style="text-align: left;">
+                            <p><strong>Client :</strong> ${order.client.nom} ${order.client.prenom}</p>
+                            <p><strong>Total :</strong> <span style="color: var(--success); font-weight: bold;">${order.total} $</span></p>
+                            <p><strong>Détails :</strong></p>
+                            <ul style="color: #94a3b8;">${itemsHtml}</ul>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <h3 style="color: var(--danger);">Commande introuvable ❌</h3>
+                        <p>Vérifiez le numéro de commande et réessayez.</p>
+                    `;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

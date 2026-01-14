@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - LTD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="webhooks.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="admin-container">
+        <div id="login-screen" class="login-screen">
+            <h1 style="color: var(--primary);">🔒 Accès Administration</h1>
+            <p>Veuillez entrer le mot de passe</p>
+            <input type="password" id="password" placeholder="Mot de passe"
+                style="padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin: 10px 0;">
+            <br>
+            <button class="btn" id="login-btn">Connexion</button>
+            <p id="login-error" style="color: red; display: none;">Mot de passe incorrect</p>
+            <p style="margin-top:20px; font-size: 0.8rem; color: #888;"></p>
+        </div>
+
+        <div id="dashboard" class="dashboard" style="display: none;">
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1);">
+                <span id="current-role-display"
+                    style="background:var(--primary); padding: 5px 15px; border-radius:20px; font-weight:bold; box-shadow:0 0 10px var(--primary-glow);">Rôle:
+                    ...</span>
+                <button class="btn btn-logout" id="logout-btn" style="background:var(--secondary);">Déconnexion</button>
+            </div>
+
+            <div id="manager-section">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>Gestion des Prix</h2>
+                    <div style="text-align: right;">
+                        <a href="index.html" style="color: var(--primary); font-weight: bold; margin-right: 15px;">Voir
+                            le site ↗</a>
+                        <br>
+                        <div
+                            style="margin-top: 5px; display: flex; flex-direction: column; gap: 5px; align-items: flex-end;">
+                            <div>
+                                <span style="font-weight: bold;">Statut Magasin :</span>
+                                <button id="toggle-status-btn" class="btn-small"
+                                    style="margin-left:5px;">Chargement...</button>
+                            </div>
+                            <div id="maintenance-control" style="display: none;">
+                                <span style="font-weight: bold; color: #dc2626;">MAINTENANCE :</span>
+                                <button id="toggle-maintenance-btn" class="btn-small"
+                                    style="margin-left:5px; background: #475569;">OFF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="price-section">
+                    <p style="margin-top:20px;">Modifiez les prix ci-dessous. Les changements sont sauvegardés dans ce
+                        navigateur.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Article (ID)</th>
+                                <th>Prix Normal ($)</th>
+                                <th style="color:var(--secondary);">En Promo ?</th>
+                                <th style="color:var(--secondary);">Prix Promo ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="price-table-body">
+                        </tbody>
+                    </table>
+
+                    <div class="actions">
+                        <button class="btn" id="save-btn">💾 Sauvegarder les modifications</button>
+                    </div>
+                    <p id="save-status"
+                        style="text-align: right; margin-top: 10px; color: green; opacity: 0; transition: opacity 0.5s;">
+                    </p>
+                    <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
+                </div>
+            </div>
+
+            <div id="stats-dashboard" class="stats-dashboard" style="margin-bottom: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin:0;">📊 Tableau de Bord</h2>
+                    <div id="report-controls" style="display:block;">
+                        <button class="btn btn-small" onclick="openReportModal()" style="background: var(--primary);">📥
+                            Générer Rapport</button>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-value" id="stat-revenue-today">0 $</div>
+                        <div class="stat-label">Ventes Aujourd'hui</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-value" id="stat-orders-pending">0</div>
+                        <div class="stat-label">Commandes en Attente</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="stat-orders-done">0</div>
+                        <div class="stat-label">Commandes Traitées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value" id="stat-employees">0</div>
+                        <div class="stat-label">Employés Actifs</div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+
+            <div id="notes-section" style="margin-bottom: 30px;">
+                <h2>📝 Notes Internes</h2>
+                <p style="color: #94a3b8; font-size: 0.9em; margin-bottom: 15px;">Notes visibles par tous les employés
+                </p>
+                <textarea id="internal-notes" placeholder="Écrivez vos notes ici... (sauvegarde automatique)"
+                    style="width: 100%; min-height: 100px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; color: white; resize: vertical;"></textarea>
+                <div style="text-align: right; margin-top: 10px;">
+                    <span id="notes-status" style="color: #10b981; opacity: 0; transition: opacity 0.3s;"></span>
+                </div>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+
+            <div id="audit-section" style="display: none; margin-bottom: 30px;">
+                <h2>📜 Journal d'Activité</h2>
+                <p style="color: #94a3b8; font-size: 0.9em; margin-bottom: 15px;">Historique des actions récentes</p>
+                <div id="audit-log"
+                    style="max-height: 300px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px;">
+                    <p style="color: #666; font-style: italic;">Aucune activité enregistrée.</p>
+                </div>
+                <button class="btn-small" id="clear-audit" style="margin-top: 10px; background: #ef4444;">🗑️ Vider le
+                    journal</button>
+            </div>
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+
+            <h2>📋 Commandes Reçues</h2>
+            <button class="btn-small" id="refresh-orders"
+                style="background: var(--primary); color: white;">Actualiser</button>
+            <div id="orders-container" style="margin-top: 20px;">
+                <p style="color: #666; font-style: italic;">Aucune commande pour le moment.</p>
+            </div>
+
+            <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
+
+            <div id="employee-section" style="display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h2>👥 Gestion des Employés</h2>
+                </div>
+                <p>Créez des codes d'accès.</p>
+                <p style="font-size:0.9em; color:#666; margin-bottom:15px;">
+                    <span style="display:block;">• <strong>Employé</strong> : Accès prix, commandes, statut.</span>
+                    <span style="display:block;">• <strong>Gérant</strong> : + création d'employés.</span>
+                    <span style="display:block;">• <strong>Co-Patron</strong> : + gestion des gérants.</span>
+                    <span style="display:block;">• <strong>Patron</strong> : Accès total.</span>
+                </p>
+
+                <div class="add-emp-form">
+                    <input type="text" id="emp-name" placeholder="Nom de l'employé"
+                        style="background: rgba(0,0,0,0.3) !important;">
+                    <input type="text" id="emp-code" placeholder="Code (4 chiffres)"
+                        style="background: rgba(0,0,0,0.3) !important;">
+                    <select id="emp-role" style="background: rgba(0,0,0,0.3) !important;">
+                        <option value="employe">Employé</option>
+                        <option value="gerant">Gérant</option>
+                        <option value="co-patron">Co-Patron</option>
+                    </select>
+                    <button class="btn" id="add-emp-btn" style="background:var(--success); width:100%;">+
+                        Ajouter</button>
+                </div>
+
+                <div id="employee-grid" class="employee-grid">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="emp-stats-modal" class="modal hidden">
+        <div class="modal-content" style="max-width: 600px; text-align: left;">
+            <span class="close-modal" id="close-emp-stats"
+                onclick="document.getElementById('emp-stats-modal').classList.add('hidden')">×</span>
+            <h2 id="emp-stats-name" style="color: var(--primary); margin-bottom: 20px;">Stats de ...</h2>
+
+            <h3 style="color: #64748b; font-size: 0.9em; text-transform: uppercase; margin-bottom: 10px;">Performance
+                Globale (Total)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.9em; color: #aaa;">Chiffre d'Affaires</div>
+                    <div id="emp-stats-total-rev" style="font-size: 1.5em; font-weight: bold; color: var(--success);">0
+                        $</div>
+                </div>
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.9em; color: #aaa;">Commandes Traitées</div>
+                    <div id="emp-stats-total-ord" style="font-size: 1.5em; font-weight: bold;">0</div>
+                </div>
+            </div>
+
+            <h3 style="color: #64748b; font-size: 0.9em; text-transform: uppercase; margin-bottom: 10px;">Performance
+                Semaine (7 jours)</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                <div
+                    style="background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.3); padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.9em; color: #d8b4fe;">Ventes Semaine</div>
+                    <div id="emp-stats-week-rev" style="font-size: 1.5em; font-weight: bold; color: #a855f7;">0 $</div>
+                </div>
+                <div
+                    style="background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.3); padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 0.9em; color: #d8b4fe;">Commandes Semaine</div>
+                    <div id="emp-stats-week-ord" style="font-size: 1.5em; font-weight: bold; color: white;">0</div>
+                </div>
+            </div>
+
+            <h3 style="font-size: 1.1em; margin-bottom: 10px;">Dernières activités</h3>
+            <ul id="emp-last-orders"
+                style="font-size: 0.9em; color: #ddd; max-height: 120px; overflow-y: auto; padding-left: 20px;">
+            </ul>
+
+            <div style="text-align: right; margin-top: 20px;">
+                <button class="btn"
+                    onclick="document.getElementById('emp-stats-modal').classList.add('hidden')">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="report-modal" class="modal hidden">
+        <div class="modal-content" style="text-align: center; max-width: 400px;">
+            <span class="close-modal" onclick="closeReportModal()">&times;</span>
+            <h2 style="color: var(--primary); margin-bottom: 10px;">📅 Créer un Rapport</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">Choisissez la période à analyser et envoyer sur Discord.</p>
+
+            <div style="display: grid; gap: 10px;">
+                <button class="btn" onclick="generateManualReport('today')">📆 Aujourd'hui</button>
+                <button class="btn" onclick="generateManualReport('week')">📅 7 Derniers Jours</button>
+                <button class="btn" onclick="generateManualReport('month')">🗓️ 30 Derniers Jours</button>
+                <button class="btn" onclick="generateManualReport('all')" style="background: #334155;">♾️ Tout depuis le
+                    début</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

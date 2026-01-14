@@ -1,56 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact LTD</title>
-    <style>
-        body { margin:0; font-family: Arial, sans-serif; }
+    <title>Contact LTD - Nous joindre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="webhooks.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
 
-        /* HEADER */
-        .ltd-header {
-            background: linear-gradient(90deg, #c60000, #004aad);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        /* MENU NAVIGATION */
-        nav {
-            background-color: #004aad;
-            padding: 15px 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        section { max-width: 900px; margin: 40px auto; text-align: center; }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #004aad;
-            color: white;
-            margin-top: 50px;
-        }
-    </style>
 </head>
+
 <body>
 
     <header class="ltd-header">
@@ -62,9 +28,9 @@
         <ul>
             <li><a href="index.html">Accueil</a></li>
             <li><a href="tarifs.html">Tarifs</a></li>
+            <li><a href="suivi-commande.html">Suivi Commande</a></li>
             <li><a href="contact.html">Contact</a></li>
-	    <li><a href="actualites.html">Actualité</a></li>
-	    <li><a href="partenairiat.html">Partenariat</a></li>
+            <li><a href="actualites.html">Actualité</a></li>
         </ul>
     </nav>
 
@@ -75,11 +41,34 @@
         <p>Adresse : Little Séoul 726, Los Santos</p>
     </section>
 
+    <section class="contact-form-section">
+        <h2>Envoyez-nous un message</h2>
+        <form id="contact-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
+            <div style="margin-bottom: 15px;">
+                <label for="contact-name" style="display: block; margin-bottom: 5px; font-weight: bold;">Nom &
+                    Prénom</label>
+                <input type="text" id="contact-name" name="contact-name" required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="contact-email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email</label>
+                <input type="email" id="contact-email" name="contact-email" required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="contact-message"
+                    style="display: block; margin-bottom: 5px; font-weight: bold;">Message</label>
+                <textarea id="contact-message" name="contact-message" rows="5" required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Envoyer le message</button>
+        </form>
+    </section>
+
     <footer>
         <p>&copy; 2026 LTD. Tous droits réservés.</p>
     </footer>
 
 </body>
+
 </html>
-
-
